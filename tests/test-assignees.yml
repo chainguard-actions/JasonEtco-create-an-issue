@@ -1,0 +1,35 @@
+name: Test assignees input
+on:
+  workflow_dispatch:
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@de0fac2e4500dabe0009e67214ff5f5447ce83dd # v6.0.2
+      - id: action
+        uses: .
+        with:
+          filename: actions/hardened/JasonEtco--create-an-issue/v2.9.0/tests/fixtures/ISSUE_TEMPLATE.md
+          assignees: octocat
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+      - name: Assert number output is set
+        env:
+          ACTUAL: ${{ steps.action.outputs.number }}
+        run: |
+          echo "actual number: $ACTUAL"
+          if [ -z "$ACTUAL" ]; then
+            echo "FAIL: expected number output to be non-empty"
+            exit 1
+          fi
+          echo "PASS"
+      - name: Assert url output is set
+        env:
+          ACTUAL: ${{ steps.action.outputs.url }}
+        run: |
+          echo "actual url: $ACTUAL"
+          if [ -z "$ACTUAL" ]; then
+            echo "FAIL: expected url output to be non-empty"
+            exit 1
+          fi
+          echo "PASS"
