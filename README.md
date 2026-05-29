@@ -1,14 +1,6 @@
 # JasonEtco/create-an-issue
 
-Creates a new issue using a template with front matter.
-
-Hardened by [Chainguard](https://www.chainguard.dev) from the upstream action at [https://github.com/JasonEtco/create-an-issue](https://github.com/JasonEtco/create-an-issue).
-
-## Versions
-
-| Version | Tag | Upstream commit |
-|---------|-----|-----------------|
-| v2.9.0 | [`v2.9.0`](https://github.com/chainguard-actions/JasonEtco-create-an-issue/tree/v2.9.0) | [`4d7c131`](https://github.com/JasonEtco/create-an-issue/commit/4d7c131a30a822fb445196f0de8ed11991f9f8a7) |
+Hardened GitHub Action by [Chainguard](https://www.chainguard.dev).
 
 ## Privacy
 
