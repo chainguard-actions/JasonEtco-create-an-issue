@@ -1,4 +1,4 @@
-name: Test assignees input
+name: Test issue creation with assignees
 on:
   workflow_dispatch:
 jobs:
@@ -8,24 +8,28 @@ jobs:
       - uses: actions/checkout@de0fac2e4500dabe0009e67214ff5f5447ce83dd # v6.0.2
       - id: action
         uses: .
-        env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         with:
           filename: actions/hardened/JasonEtco--create-an-issue/v2.9.0/tests/fixtures/ISSUE_TEMPLATE.md
           assignees: octocat
-      - name: Assert outputs exist
         env:
-          ISSUE_NUMBER: ${{ steps.action.outputs.number }}
-          ISSUE_URL: ${{ steps.action.outputs.url }}
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+      - name: Assert number output is set
+        env:
+          ACTUAL: ${{ steps.action.outputs.number }}
         run: |
-          echo "issue number: $ISSUE_NUMBER"
-          echo "issue url: $ISSUE_URL"
-          if [ -z "$ISSUE_NUMBER" ]; then
-            echo "FAIL: expected issue number to be set"
+          echo "actual number: $ACTUAL"
+          if [ -z "$ACTUAL" ]; then
+            echo "FAIL: expected number output to be set"
             exit 1
           fi
-          if [ -z "$ISSUE_URL" ]; then
-            echo "FAIL: expected issue url to be set"
+          echo "PASS"
+      - name: Assert url output is set
+        env:
+          ACTUAL: ${{ steps.action.outputs.url }}
+        run: |
+          echo "actual url: $ACTUAL"
+          if [ -z "$ACTUAL" ]; then
+            echo "FAIL: expected url output to be set"
             exit 1
           fi
           echo "PASS"
