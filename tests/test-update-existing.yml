@@ -1,0 +1,44 @@
+name: Test issue creation with update_existing
+on:
+  workflow_dispatch:
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@de0fac2e4500dabe0009e67214ff5f5447ce83dd # v6.0.2
+
+      - name: Copy fixture template to expected location
+        run: |
+          mkdir -p .github
+          cp actions/hardened/JasonEtco--create-an-issue/v2.9.1/tests/fixtures/ISSUE_TEMPLATE.md .github/ISSUE_TEMPLATE.md
+
+      - id: action
+        uses: .
+        with:
+          filename: .github/ISSUE_TEMPLATE.md
+          update_existing: "true"
+          search_existing: open
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+
+      - name: Assert issue number is set
+        env:
+          ACTUAL: ${{ steps.action.outputs.number }}
+        run: |
+          echo "actual number: $ACTUAL"
+          if [ -z "$ACTUAL" ]; then
+            echo "FAIL: expected issue number to be set"
+            exit 1
+          fi
+          echo "PASS"
+
+      - name: Assert issue url is set
+        env:
+          ACTUAL: ${{ steps.action.outputs.url }}
+        run: |
+          echo "actual url: $ACTUAL"
+          if [ -z "$ACTUAL" ]; then
+            echo "FAIL: expected issue url to be set"
+            exit 1
+          fi
+          echo "PASS"
