@@ -1,4 +1,4 @@
-name: Test issue creation with milestone
+name: Test custom template file
 on:
   workflow_dispatch:
 jobs:
@@ -7,24 +7,28 @@ jobs:
     steps:
       - uses: actions/checkout@de0fac2e4500dabe0009e67214ff5f5447ce83dd # v6.0.2
 
-      - name: Create issue template
+      - name: Create custom issue template
         run: |
-          mkdir -p .github
-          cat > .github/ISSUE_TEMPLATE.md << 'EOF'
+          mkdir -p .github/templates
+          cat > .github/templates/custom-issue.md << 'EOF'
           ---
-          title: Test Issue with Milestone
+          title: Custom Template Issue
           labels: enhancement
           ---
-          This is a test issue created with a milestone input.
+          This issue was created from a custom template.
+
+          ## Details
+          - Created by: automated test
+          - Template: custom-issue.md
           EOF
 
       - id: action
         uses: .
         with:
-          milestone: 1
+          filename: .github/templates/custom-issue.md
         continue-on-error: true
 
-      - name: Assert action ran with milestone input or failed gracefully
+      - name: Assert action ran with custom template or failed gracefully
         env:
           OUTCOME: ${{ steps.action.outcome }}
           NUMBER: ${{ steps.action.outputs.number }}
@@ -42,7 +46,7 @@ jobs:
               echo "FAIL: action succeeded but 'url' output is empty"
               exit 1
             fi
-            echo "PASS: issue created with milestone, number=$NUMBER url=$URL"
+            echo "PASS: issue created with number=$NUMBER url=$URL"
           elif [ "$OUTCOME" = "failure" ]; then
             echo "PASS: action failed gracefully (sentinel repo is not resolvable)"
           else
