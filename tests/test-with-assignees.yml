@@ -1,4 +1,4 @@
-name: Test basic issue creation
+name: Test issue creation with assignees
 on:
   workflow_dispatch:
 jobs:
@@ -17,6 +17,7 @@ jobs:
         continue-on-error: true
         with:
           filename: .github/ISSUE_TEMPLATE.md
+          assignees: octocat
 
       - name: Assert action ran (outputs set, or failed gracefully on sentinel repo)
         env:
@@ -36,7 +37,7 @@ jobs:
               echo "FAIL: action succeeded but 'url' output is empty"
               exit 1
             fi
-            echo "PASS: issue created with number=$NUMBER url=$URL"
+            echo "PASS: issue created with assignees, number=$NUMBER url=$URL"
           elif [ "$OUTCOME" = "failure" ]; then
             echo "PASS: action failed gracefully (sentinel repo is not resolvable)"
           else
