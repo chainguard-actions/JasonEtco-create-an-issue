@@ -8,7 +8,7 @@ Hardened by [Chainguard](https://www.chainguard.dev) from the upstream action at
 
 | Version | Tag | Upstream commit | Hardening report |
 |---------|-----|-----------------|------------------|
-| v2.8.1 | [`v2.8.1`](https://github.com/chainguard-actions/JasonEtco-create-an-issue/tree/v2.8.1) | [`77399b6`](https://github.com/JasonEtco/create-an-issue/commit/77399b6110ef82b94c1c9f9f615acf9e604f7f56) | [`HARDENING.md`](https://github.com/chainguard-actions/JasonEtco-create-an-issue/blob/v2.8.1/HARDENING.md) |
+| v2.8.1 | [`v2.8.1`](https://github.com/chainguard-actions/JasonEtco-create-an-issue/tree/v2.8.1) | [`77399b6`](https://github.com/JasonEtco/create-an-issue/commit/77399b6110ef82b94c1c9f9f615acf9e604f7f56) | — |
 | v2.9.0 | [`v2.9.0`](https://github.com/chainguard-actions/JasonEtco-create-an-issue/tree/v2.9.0) | [`4d7c131`](https://github.com/JasonEtco/create-an-issue/commit/4d7c131a30a822fb445196f0de8ed11991f9f8a7) | [`HARDENING.md`](https://github.com/chainguard-actions/JasonEtco-create-an-issue/blob/v2.9.0/HARDENING.md) |
 | v2.9.1 | [`v2.9.1`](https://github.com/chainguard-actions/JasonEtco-create-an-issue/tree/v2.9.1) | [`e27dddc`](https://github.com/JasonEtco/create-an-issue/commit/e27dddc79c92bc6e4562f268fffa5ed752639abd) | [`HARDENING.md`](https://github.com/chainguard-actions/JasonEtco-create-an-issue/blob/v2.9.1/HARDENING.md) |
 | v2.9.2 | [`v2.9.2`](https://github.com/chainguard-actions/JasonEtco-create-an-issue/tree/v2.9.2) | [`1b14a70`](https://github.com/JasonEtco/create-an-issue/commit/1b14a70e4d8dc185e5cc76d3bec9eab20257b2c5) | [`HARDENING.md`](https://github.com/chainguard-actions/JasonEtco-create-an-issue/blob/v2.9.2/HARDENING.md) |
